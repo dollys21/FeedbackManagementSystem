@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    
+    <appender name="TIME_BASED_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+	    <file>D:/logs/learning.log</file>
+	    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">      
+	 
+	        <fileNamePattern>D:/logs/learning.%d{yyyy-MM-dd-HH}.log</fileNamePattern>
+	        <maxHistory>30</maxHistory>
+	    </rollingPolicy>
+	    <encoder>
+	        <pattern>%relative [%thread] %-5level %logger{35} - %msg%n</pattern>
+	    </encoder>
+	</appender>   
+	
+	 <appender name="TIME_BASED_FILE_hibernet" class="ch.qos.logback.core.rolling.RollingFileAppender">
+	    <file>D:/logs/learning_hibernet.log</file>
+	    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">        
+	        <fileNamePattern>D:/logs/learning_hibernet.%d{yyyy-MM-dd-HH}.log</fileNamePattern>
+	        <maxHistory>30</maxHistory>
+	    </rollingPolicy>
+	    <encoder>
+	        <pattern>%relative [%thread] %-5level %logger{35} - %msg%n</pattern>
+	    </encoder>
+	</appender>   
+	<logger name="com.techm" level="Debug" additivity="false">
+	    <appender-ref ref="TIME_BASED_FILE" />
+	   	<appender-ref ref="STDOUT" /> 
+	</logger>
+	 <logger name="org.hibernate.SQL" level="Debug"  additivity="false"> 
+	     <appender-ref ref="TIME_BASED_FILE_hibernet" />
+	 </logger>
+	 
+	 <!-- <logger name="org.hibernate" level="Info"  additivity="false"> 
+	     <appender-ref ref="TIME_BASED_FILE_hibernet" />
+	 </logger>  -->
+   
+
+    <root level="Error">
+    	<appender-ref ref="TIME_BASED_FILE" />
+    	  <appender-ref ref="TIME_BASED_FILE_hibernet" />    
+    	    	<appender-ref ref="STDOUT" /> 
+   	</root>
+</configuration>
